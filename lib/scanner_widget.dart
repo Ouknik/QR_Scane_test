@@ -1,5 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:qrtest/extenstion.dart';
 
 class ScannerAnimation extends AnimatedWidget {
   final bool stopped;
@@ -17,15 +19,11 @@ class ScannerAnimation extends AnimatedWidget {
 
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable as Animation<double>;
-    final scorePosition = (animation.value * 330) + 180;
-
-    Color color1 = Color(0x5532CD32);
-    Color color2 = Color(0x0032CD32);
-
-    if (animation.status == AnimationStatus.reverse) {
-      color1 = Color(0x0032CD32);
-      color2 = Color(0x5532CD32);
-    }
+    final scorePosition =
+        (animation.value * MediaQuery.of(context).size.height * 0.39) +
+            MediaQuery.of(context).size.height * 0.24;
+    Color color1 = HexColor.fromHex("#09B5F0");
+    Color color2 = HexColor.fromHex("#09B5F0");
 
     return new Positioned(
       bottom: scorePosition,
@@ -33,7 +31,7 @@ class ScannerAnimation extends AnimatedWidget {
       child: new Opacity(
         opacity: (stopped) ? 0.0 : 0.6,
         child: Container(
-          height: 50.0,
+          height: 2.0,
           width: width,
           decoration: new BoxDecoration(
             gradient: new LinearGradient(

@@ -176,12 +176,13 @@ class _QRScannerState extends State<QRScanner> with TickerProviderStateMixin {
           this.barcode = barcode;
           if (this.barcode != null) {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return ResultaPage(statue: true);
+              return ResultaPage(
+                message: this.barcode!.code.toString(),
+              );
             }));
+
+            controller.dispose();
           }
         }));
   }
 }
-/**
- *  
- */
